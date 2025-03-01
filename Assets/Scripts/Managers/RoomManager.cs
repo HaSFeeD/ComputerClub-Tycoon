@@ -1,40 +1,3 @@
-<<<<<<< HEAD
-// RoomManager.cs
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-
-public class RoomManager : MonoBehaviour
-{
-    private List<Room> Rooms = new List<Room>();
-
-    void Start()
-    {
-        Rooms = FindObjectsOfType<Room>().ToList();
-    }
-
-    public T FindNearestAvailableObject<T>(Vector3 position) where T : MonoBehaviour, IAvailableObject
-    {
-        T nearestObject = null;
-        float minDistance = float.MaxValue;
-
-        foreach (var room in Rooms)
-        {
-            var availableObjects = room.GetAvailableObjects<T>().Where(obj => !obj.IsOccupied);
-            foreach (var obj in availableObjects)
-            {
-                float distance = Vector3.Distance(position, obj.Position);
-                if (distance < minDistance)
-                {
-                    minDistance = distance;
-                    nearestObject = obj;
-                }
-            }
-        }
-
-        return nearestObject;
-    }
-=======
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -44,6 +7,7 @@ public class RoomManager : MonoBehaviour
 {
     public static RoomManager Instance;
     public List<Room> PurchasedRooms = new List<Room>();
+    public List<RoomItemData> roomItemDatas = new List<RoomItemData>();
     public List<Room> AllRooms = new List<Room>();
     public List<Computer> Computers = new List<Computer>();
     public List<Toilet> Toilets = new List<Toilet>();
@@ -54,8 +18,9 @@ public class RoomManager : MonoBehaviour
         Instance = this;
         AllRooms.AddRange(FindObjectsOfType<Room>());
         Computers = FindObjectsOfType<Computer>().ToList();
-        Toilets = FindObjectsOfType<Toilet>().ToList();
-        VendingMachines = FindObjectsOfType<VendingMachine>().ToList();
+        Toilets = Resources.FindObjectsOfTypeAll<Toilet>().ToList();
+        VendingMachines = Resources.FindObjectsOfTypeAll<VendingMachine>().ToList();
+        roomItemDatas = Resources.FindObjectsOfTypeAll<RoomItemData>().ToList();
     }
     private void Start(){
         foreach(var PurchasedRoom in AllRooms){
@@ -111,6 +76,8 @@ public class RoomManager : MonoBehaviour
         }
         return null;
     }
-    
->>>>>>> 27866b6 (Refactored Some Code and add new Features)
+    public void RefreshComputers()
+    {
+        Computers = FindObjectsOfType<Computer>().ToList();
+    }
 }

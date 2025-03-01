@@ -1,4 +1,0 @@
-repository "ComputerClub Tycoon@HaSFeeD@cloud"
-  path "/"
-    br "/main"
-    co "/main"

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 675.65 103.3">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #4c9350;
+      }
+
+      .cls-3 {
+        fill: #42c352;
+      }
+
+      .cls-4 {
+        fill: #181c1e;
+      }
+    </style>
+  </defs>
+  <g id="_Слой_1-2" data-name="Слой 1">
+    <g>
+      <rect class="cls-4" x="0" y="0" width="675.65" height="103.3" rx="38.1" ry="38.1"/>
+      <g>
+        <rect class="cls-3" x="30.87" y="18.79" width="111.04" height="65.74" rx="6.63" ry="6.63"/>
+        <circle class="cls-2" cx="86.39" cy="51.67" r="18.51"/>
+        <circle class="cls-1" cx="86.4" cy="51.66" r="8.42"/>
+        <path class="cls-2" d="M136.22,18.8h-11.69v3.55c0,7.64,6.19,13.83,13.83,13.83h3.55v-11.69c0-3.14-2.55-5.69-5.69-5.69Z"/>
+        <path class="cls-2" d="M141.91,78.84v-11.69h-3.55c-7.64,0-13.83,6.19-13.83,13.83v3.55h11.69c3.14,0,5.69-2.55,5.69-5.69Z"/>
+        <path class="cls-2" d="M36.58,84.53h11.66v-3.51c0-7.64-6.19-13.83-13.83-13.83h-3.51v11.66c0,3.14,2.55,5.69,5.69,5.69Z"/>
+        <path class="cls-2" d="M30.87,24.46v11.69h3.55c7.64,0,13.83-6.19,13.83-13.83v-3.55h-11.69c-3.14,0-5.69,2.55-5.69,5.69Z"/>
+        <rect class="cls-2" x="30.85" y="35.95" width="3.65" height="31.4"/>
+        <rect class="cls-2" x="138.26" y="36.17" width="3.65" height="31.4"/>
+        <rect class="cls-2" x="85.2" y="-18.81" width="3.65" height="78.84" transform="translate(66.42 107.64) rotate(-90)"/>
+        <rect class="cls-2" x="85.2" y="43.29" width="3.65" height="78.84" transform="translate(4.32 169.73) rotate(-90)"/>
+      </g>
+    </g>
+  </g>
+</svg>

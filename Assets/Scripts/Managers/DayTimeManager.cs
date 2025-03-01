@@ -7,16 +7,19 @@ using UnityEngine;
 
 public class DayTimeManager : MonoBehaviour
 {
-    // DELETE AFTER TEST
+    public static DayTimeManager Instance; 
 
-    [SerializeField] private TextMeshProUGUI _hoursTextMesh;
-    [SerializeField] private TextMeshProUGUI _minutesTextMesh;
     [SerializeField] private GameObject _dayLightGameObject;
     private Light _light;
     private int _minutes;
     private int _hours;
     public float _offsetDemo = 0;
     private float _currentTime;
+    public int CurrentHour {get { return _hours; }}
+    private void Awake()
+    {
+        Instance = this;
+    }
     private void Start(){
         _hours = 10; _minutes = 0;
         _light = _dayLightGameObject.GetComponent<Light>();
@@ -31,17 +34,22 @@ public class DayTimeManager : MonoBehaviour
         if(_minutes >= 60){
             _hours += 1;
             _minutes = 0;
+            BotSpawnTimeManager.Instance.AdjustSpawnTime(_hours);
         }
         if(_hours >= 24){
             TimeReset();
         }
-        _hoursTextMesh.text = _hours.ToString();
-        _minutesTextMesh.text = _minutes.ToString();
+        HUD.Instance._hoursTextMesh.text = _hours.ToString();
+        HUD.Instance._minutesTextMesh.text = _minutes.ToString();
         switch(_hours){
-            case 6: _light.color = new Color32(142,134,114,255); break;
-            case 10: _light.color = new Color32(255,240,196,255); break;
-            case 18: _light.color = new Color32(250,184,18,255); break;
-            case 21: _light.color = new Color32(22,21,18,255); break;
+            case 6: _light.color = new Color32(142,134,114,255);
+            break;
+            case 10: _light.color = new Color32(255,240,196,255); 
+            break;
+            case 18: _light.color = new Color32(250,184,18,255); 
+            break;
+            case 21: _light.color = new Color32(22,21,18,255); 
+            break;
         }
     }
     private void TimeReset(){

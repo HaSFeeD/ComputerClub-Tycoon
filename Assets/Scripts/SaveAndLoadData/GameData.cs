@@ -1,17 +1,14 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-[Serializable]
+[System.Serializable]
 public class GameData
 {
-    public float Cash;
     public int Diamonds;
-
-    public List<int> purchasedRoomIDs;
+    public List<LevelData> Levels;
     public GameData()
     {
-        Cash = 100f;
-        Diamonds = 0;
-        purchasedRoomIDs = new List<int>();
+        Levels = new List<LevelData>();
     }
 }

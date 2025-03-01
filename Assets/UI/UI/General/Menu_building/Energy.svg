@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37.05 52.03">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f7ac3b;
+      }
+
+      .cls-2 {
+        fill: #ca8434;
+      }
+    </style>
+  </defs>
+  <g id="_Слой_1-2" data-name="Слой 1">
+    <g>
+      <polygon class="cls-2" points="14.77 0 37.05 0 22.45 19.1 35.26 19.1 2.33 52.03 11.77 29.44 2.76 29.44 14.77 0"/>
+      <polygon class="cls-1" points="12.18 0 34.28 0 19.68 20.1 32.5 20.1 2.33 52.03 9 30.44 0 30.44 12.18 0"/>
+    </g>
+  </g>
+</svg>

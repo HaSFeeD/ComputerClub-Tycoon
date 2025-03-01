@@ -31,7 +31,6 @@ public class UseComputerAction : IBotAction
         }
         else
         {
-            Debug.Log("Не вдалося зайняти зарезервований комп'ютер для бота " + bot.gameObject.name);
             IsCompleted = true;
             bot.CurrentActivity = BotActivity.Idle;
         }
@@ -52,7 +51,7 @@ public class UseComputerAction : IBotAction
                 previousPosition = bot.transform.position;
                 previousRotation = bot.transform.rotation;
 
-                bot.transform.position = targetComputer.SeatPosition.position + new Vector3(0, -0.5f, 0);
+                bot.transform.position = targetComputer.SeatPosition.position + new Vector3(0, -1f, 0);
                 bot.transform.rotation = targetComputer.SeatPosition.rotation * Quaternion.Euler(0, 90, 0);
 
                 timer = 0f;

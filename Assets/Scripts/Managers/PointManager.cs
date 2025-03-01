@@ -1,20 +1,20 @@
-<<<<<<< HEAD
-using System.Collections;
-using System.Collections.Generic;
-=======
->>>>>>> 27866b6 (Refactored Some Code and add new Features)
 using UnityEngine;
 
 public class PointManager : MonoBehaviour
 {
     public static PointManager instance;
-<<<<<<< HEAD
-    public List<Phase> _points;
-=======
+
+    [Header ("Bot Points")]
     public GameObject spawnPoint;
     public GameObject registrationPoint;
->>>>>>> 27866b6 (Refactored Some Code and add new Features)
+    public GameObject queueStartPoint;
     public GameObject finishPoint;
+    
+    [Header ("Event Bus Point")]
+    public GameObject busSpawnPoint;
+    public GameObject busStopPoint;
+    public GameObject busSpawnBotPoint;
+    public GameObject busEndPoint;
 
     private void Awake()
     {
@@ -28,7 +28,3 @@ public class PointManager : MonoBehaviour
         }
     }
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 27866b6 (Refactored Some Code and add new Features)

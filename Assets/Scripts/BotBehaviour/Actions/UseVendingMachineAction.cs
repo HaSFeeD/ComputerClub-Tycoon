@@ -27,7 +27,6 @@ public class UseVendingMachineAction : IBotAction
 
         if (targetMachine == null || !targetMachine.TryOccupy(bot))
         {
-            Debug.Log("Немає доступних автоматів для бота " + bot.gameObject.name);
             IsCompleted = true;
             bot.CurrentActivity = BotActivity.Idle;
             return;
@@ -41,7 +40,7 @@ public class UseVendingMachineAction : IBotAction
     public void Execute()
     {
         if (IsCompleted) return;
-
+        
         if (!bot.Agent.pathPending && bot.Agent.remainingDistance <= bot.ReachedThreshold)
         {
             if (bot.CurrentActivity != BotActivity.UsingVendingMachine)
@@ -68,6 +67,8 @@ public class UseVendingMachineAction : IBotAction
             timer += Time.deltaTime;
             if (timer >= usageDuration)
             {
+                EconomyManager.Instance.AddCash(targetMachine.Income);
+                Debug.Log("VD Usage + " + targetMachine.Income);
                 FinishUsage();
                 IsCompleted = true;
                 bot.CurrentActivity = BotActivity.Idle;

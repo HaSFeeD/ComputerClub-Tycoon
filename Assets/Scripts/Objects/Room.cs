@@ -3,24 +3,36 @@ using UnityEngine;
 using System.Linq;
 using UnityEditor.Localization;
 
+
 public class Room : MonoBehaviour
 {
     [SerializeField]
     public int id;
+    public float _roomIncome;
     [SerializeField]
     public GameObject BlockRoomGameobject;
     [SerializeField]
-    public bool _roomAvailable = true;
+    public bool _roomAvailable = false;
+    [SerializeField]
+    private bool _hasUpgrades = false;
     public List<Computer> Computers = new List<Computer>();
     public List<Toilet> Toilets = new List<Toilet>();
     public List<VendingMachine> VendingMachines = new List<VendingMachine>();
+    public int ObjectsCount;
+    public GamingRoomUpgradesManager roomUpgradesManager;
 
     private void Awake()
     {
+        roomUpgradesManager = GetComponentInChildren<GamingRoomUpgradesManager>();
         Computers = GetComponentsInChildren<Computer>().ToList();
-        Toilets = GetComponentsInChildren<Toilet>().ToList();
-        VendingMachines = GetComponentsInChildren<VendingMachine>().ToList();
+        Toilets = GetComponentsInChildren<Toilet>(true).ToList();
+        VendingMachines = GetComponentsInChildren<VendingMachine>(true).ToList();
+        if(_roomIncome == 0){
+            _roomIncome = 1;
+        }
     }
+
+    
 
     public List<T> GetAvailableObjects<T>() where T : MonoBehaviour, IUsableObject
     {
@@ -33,7 +45,8 @@ public class Room : MonoBehaviour
             return VendingMachines as List<T>;
         return new List<T>();
     }
-    private async void BlockedRooms(){
-
+    public void AddRoomIncome(float amount){
+        _roomIncome += amount;
+        Debug.Log("Room:" + id + " income: " + _roomIncome);
     }
 }

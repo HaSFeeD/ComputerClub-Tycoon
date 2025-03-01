@@ -4,11 +4,7 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences: []
-<<<<<<< HEAD
-  executionOrder: -100
-=======
-  executionOrder: -104
->>>>>>> 27866b6 (Refactored Some Code and add new Features)
+  executionOrder: -114
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

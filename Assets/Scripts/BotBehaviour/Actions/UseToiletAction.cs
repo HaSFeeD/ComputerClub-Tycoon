@@ -60,9 +60,9 @@ public class UseToiletAction : IBotAction
                 timer = 0f;
                 bot.CurrentActivity = BotActivity.UsingToilet;
 
-                timerUI = GameObject.Instantiate(bot.TimerUIPrefab, bot.transform).GetComponent<TimerUI>();
-                timerUI.SetDuration(usageDuration);
-                timerUI.Begin();
+                // timerUI = GameObject.Instantiate(bot.TimerUIPrefab, bot.transform).GetComponent<TimerUI>();
+                // timerUI.SetDuration(usageDuration);
+                // timerUI.Begin();
             }
         }
 

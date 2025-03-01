@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 198.57 75.52">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: #88a6b0;
+      }
+
+      .cls-3 {
+        fill: none;
+        stroke: red;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+  </defs>
+  <g id="_Слой_1-2" data-name="Слой 1">
+    <g>
+      <path class="cls-1" d="M23.93,0h150.71c13.21,0,23.93,10.72,23.93,23.93v51.56H0V23.93C0,10.72,10.72,0,23.93,0Z"/>
+      <g>
+        <g>
+          <rect class="cls-2" x="41.11" y="43.62" width="17.03" height="31.9"/>
+          <rect class="cls-2" x="65.99" y="25" width="17.03" height="50.51"/>
+          <rect class="cls-2" x="90.88" y="37.05" width="17.03" height="38.46"/>
+          <rect class="cls-2" x="115.77" y="18.7" width="17.03" height="56.82"/>
+          <rect class="cls-2" x="140.65" y="29.99" width="17.03" height="45.52"/>
+        </g>
+        <polyline class="cls-3" points="14.61 56.28 74.51 9.89 99.4 25 124.28 7.2 149.17 21.44 179.06 37.86"/>
+      </g>
+    </g>
+  </g>
+</svg>

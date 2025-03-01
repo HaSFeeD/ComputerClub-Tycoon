@@ -1,17 +1,12 @@
-<<<<<<< HEAD
 using System.Collections;
 using System.Collections.Generic;
-=======
->>>>>>> 27866b6 (Refactored Some Code and add new Features)
 using UnityEngine;
 
 public class BotAnimations : MonoBehaviour
 {
-<<<<<<< HEAD
-=======
     [SerializeField]
     private GameObject _bot;
->>>>>>> 27866b6 (Refactored Some Code and add new Features)
+    
     private BotController _botController;
     private Animator _animator;
 
@@ -23,37 +18,6 @@ public class BotAnimations : MonoBehaviour
 
     private void Update()
     {
-<<<<<<< HEAD
-        if (_botController.isMovingToPoint)
-        {
-            _animator.SetBool("isWalking", true);
-        }
-        else if (_botController.isMovingToComputer)
-        {
-            _animator.SetBool("isWalking", true);
-        }
-        else
-        {
-            _animator.SetBool("isWalking", false);
-        }
-
-        if (_botController.isWaitingAtPoint)
-        {
-            _animator.SetBool("isWaiting", true);
-        }
-        else
-        {
-            _animator.SetBool("isWaiting", false);
-        }
-
-        if (_botController.isUsingComputer)
-        {
-            _animator.SetBool("isUsingComputer", true);
-        }
-        else
-        {
-            _animator.SetBool("isUsingComputer", false);
-=======
         switch (_botController.CurrentActivity)
         {
             case BotActivity.Walking:
@@ -104,7 +68,6 @@ public class BotAnimations : MonoBehaviour
                 _animator.SetBool("isUsingVendingMachine", false);
                 _animator.SetBool("isUsingToilet", false);
                 break;
->>>>>>> 27866b6 (Refactored Some Code and add new Features)
         }
     }
 }

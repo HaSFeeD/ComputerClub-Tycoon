@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 188.18 177.33">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #004651;
+        stroke-width: 2px;
+      }
+
+      .cls-1, .cls-2 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-2 {
+        fill: none;
+        stroke: #006177;
+        stroke-width: 2.47px;
+      }
+    </style>
+  </defs>
+  <g id="_Слой_1-2" data-name="Слой 1">
+    <g>
+      <rect class="cls-1" x="1" y="1" width="186.18" height="175.33" rx="34.78" ry="34.78"/>
+      <g>
+        <path class="cls-2" d="M52.52,57.53h110.81c4.54,0,8.26,3.72,8.26,8.26v78.96c0,4.54-3.72,8.26-8.26,8.26H24.85c-4.54,0-8.26-3.72-8.26-8.26v-78.96c0-4.54,3.72-8.26,8.26-8.26h8.54"/>
+        <circle class="cls-2" cx="124.29" cy="102.55" r="28.91"/>
+        <circle class="cls-2" cx="124.29" cy="102.55" r="18.46"/>
+        <rect class="cls-2" x="26.55" y="121.02" width="46.4" height="6.07"/>
+        <rect class="cls-2" x="26.55" y="109.76" width="46.4" height="6.07"/>
+        <rect class="cls-2" x="26.55" y="98.5" width="46.4" height="6.07"/>
+        <rect class="cls-2" x="26.55" y="87.25" width="46.4" height="6.07"/>
+        <circle class="cls-2" cx="36.03" cy="71.62" r="4.74"/>
+        <circle class="cls-2" cx="49.75" cy="71.62" r="4.74"/>
+        <circle class="cls-2" cx="63.48" cy="71.62" r="4.74"/>
+        <rect class="cls-2" x="29.95" y="153" width="28.06" height="12.15"/>
+        <rect class="cls-2" x="130.17" y="153" width="28.06" height="12.15"/>
+        <path class="cls-2" d="M52.79,55.83c0,.59-.1,1.16-.28,1.7h-19.13c-.18-.54-.28-1.12-.28-1.7,0-3.98,4.41-7.21,9.84-7.21s9.84,3.23,9.84,7.21Z"/>
+        <rect class="cls-2" x="123.24" y="12.18" width="5.95" height="45.35"/>
+      </g>
+    </g>
+  </g>
+</svg>
