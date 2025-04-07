@@ -1,6 +1,7 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class CameraController : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class CameraController : MonoBehaviour
     public float panSpeed = 20f;
     public float zoomSpeedTouch = 0.1f;
     public float zoomSpeedMouse = 10f;
+    public float panLerpSpeed = 10f;
+    public float zoomLerpSpeed = 10f;
 
     [Header("Zoom Limits")]
     public float minZoom = 20f;
@@ -20,119 +23,155 @@ public class CameraController : MonoBehaviour
     public float maxZ =  50f;
 
     private Vector3 lastPanPosition;
-    private int panFingerId; 
-
+    private int panTouchId;
     private bool isPanning;
     private bool isZooming;
 
     private Camera cam;
-    private LayerMask layerMask;
+
+    private Vector3 targetPosition;
+    private float targetZoom;
 
     void Start()
     {
-        layerMask = LayerMask.GetMask("UI");
         cam = GetComponent<Camera>();
+        targetPosition = transform.position;
+        if (cam.orthographic)
+            targetZoom = cam.orthographicSize;
+        else
+            targetZoom = cam.fieldOfView;
     }
 
     void Update()
     {
-        if (Input.touchCount > 0)
+        if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
         {
-            if (EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject(Touchscreen.current.primaryTouch.touchId.ReadValue()))
                 return;
         }
-        else
+        else if (Mouse.current != null)
         {
-            if (EventSystem.current.IsPointerOverGameObject())
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
                 return;
         }
 
-        if (Input.touchCount == 2)
+        if (Touchscreen.current != null)
         {
-            isPanning = false;
-            isZooming = true;
-
-            Touch touchZero = Input.GetTouch(0);
-            Touch touchOne = Input.GetTouch(1);
-
-            Vector2 touchZeroPrevPos = touchZero.position - touchZero.deltaPosition;
-            Vector2 touchOnePrevPos = touchOne.position - touchOne.deltaPosition;
-
-            float prevTouchDeltaMag = (touchZeroPrevPos - touchOnePrevPos).magnitude;
-            float touchDeltaMag = (touchZero.position - touchOne.position).magnitude;
-
-            float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
-
-            Zoom(deltaMagnitudeDiff * zoomSpeedTouch);
-        }
-        else if (Input.touchCount == 1)
-        {
-            isZooming = false;
-
-            Touch touch = Input.GetTouch(0);
-            if (touch.phase == TouchPhase.Began)
+            var touches = Touchscreen.current.touches;
+            int activeTouchCount = 0;
+            foreach (var touch in touches)
             {
-                lastPanPosition = touch.position;
-                panFingerId = touch.fingerId;
+                if (touch.press.isPressed)
+                    activeTouchCount++;
             }
-            else if (touch.fingerId == panFingerId && touch.phase == TouchPhase.Moved)
+
+            if (activeTouchCount >= 2)
             {
-                PanCamera(touch.position);
+                isPanning = false;
+                isZooming = true;
+
+                var activeTouches = new System.Collections.Generic.List<TouchControl>();
+                foreach (var touch in touches)
+                {
+                    if (touch.press.isPressed)
+                        activeTouches.Add(touch);
+                }
+                if (activeTouches.Count >= 2)
+                {
+                    var touch0 = activeTouches[0];
+                    var touch1 = activeTouches[1];
+
+                    Vector2 touch0Pos = touch0.position.ReadValue();
+                    Vector2 touch1Pos = touch1.position.ReadValue();
+
+                    Vector2 touch0PrevPos = touch0Pos - touch0.delta.ReadValue();
+                    Vector2 touch1PrevPos = touch1Pos - touch1.delta.ReadValue();
+
+                    float prevTouchDeltaMag = (touch0PrevPos - touch1PrevPos).magnitude;
+                    float touchDeltaMag = (touch0Pos - touch1Pos).magnitude;
+                    float deltaMagnitudeDiff = prevTouchDeltaMag - touchDeltaMag;
+
+                    UpdateZoom(deltaMagnitudeDiff * zoomSpeedTouch);
+                }
+            }
+            else if (activeTouchCount == 1)
+            {
+                isZooming = false;
+                foreach (var touch in touches)
+                {
+                    if (touch.press.isPressed)
+                    {
+                        if (touch.phase.ReadValue() == UnityEngine.InputSystem.TouchPhase.Began)
+                        {
+                            lastPanPosition = touch.position.ReadValue();
+                            panTouchId = touch.touchId.ReadValue();
+                        }
+                        else if (touch.touchId.ReadValue() == panTouchId && touch.phase.ReadValue() == UnityEngine.InputSystem.TouchPhase.Moved)
+                        {
+                            PanCamera(touch.position.ReadValue());
+                        }
+                    }
+                }
             }
         }
-        else
+        if (Mouse.current != null)
         {
-            isZooming = false;
-
-            if (Input.GetMouseButtonDown(0))
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 isPanning = true;
-                lastPanPosition = Input.mousePosition;
+                lastPanPosition = Mouse.current.position.ReadValue();
             }
-            else if (Input.GetMouseButton(0) && isPanning)
+            else if (Mouse.current.leftButton.isPressed && isPanning)
             {
-                PanCamera(Input.mousePosition);
+                PanCamera(Mouse.current.position.ReadValue());
             }
-            else if (Input.GetMouseButtonUp(0))
+            else if (Mouse.current.leftButton.wasReleasedThisFrame)
             {
                 isPanning = false;
             }
 
-            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            float scroll = Mouse.current.scroll.ReadValue().y;
             if (Mathf.Abs(scroll) > 0.001f)
             {
-                Zoom(-scroll * zoomSpeedMouse);
+                UpdateZoom(-scroll * zoomSpeedMouse);
             }
+        }
+
+        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * panLerpSpeed);
+
+        if (cam.orthographic)
+        {
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);
+        }
+        else
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetZoom, Time.deltaTime * zoomLerpSpeed);
         }
     }
 
     void PanCamera(Vector3 newPanPosition)
     {
         Vector3 offset = cam.ScreenToViewportPoint(lastPanPosition - newPanPosition);
-
         Vector3 move = new Vector3(offset.x * panSpeed, 0f, offset.y * panSpeed);
 
-        transform.Translate(move, Space.World);
-
-        Vector3 clampedPos = transform.position;
-        clampedPos.x = Mathf.Clamp(clampedPos.x, minX, maxX);
-        clampedPos.z = Mathf.Clamp(clampedPos.z, minZ, maxZ);
-        transform.position = clampedPos;
+        targetPosition += move;
+        targetPosition.x = Mathf.Clamp(targetPosition.x, minX, maxX);
+        targetPosition.z = Mathf.Clamp(targetPosition.z, minZ, maxZ);
 
         lastPanPosition = newPanPosition;
     }
 
-    void Zoom(float delta)
+    void UpdateZoom(float delta)
     {
         if (cam.orthographic)
         {
-            cam.orthographicSize += delta;
-            cam.orthographicSize = Mathf.Clamp(cam.orthographicSize, minZoom, maxZoom);
+            targetZoom = cam.orthographicSize + delta;
+            targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
         }
         else
         {
-            cam.fieldOfView += delta;
-            cam.fieldOfView = Mathf.Clamp(cam.fieldOfView, minZoom, maxZoom);
+            targetZoom = cam.fieldOfView + delta;
+            targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
         }
     }
 }

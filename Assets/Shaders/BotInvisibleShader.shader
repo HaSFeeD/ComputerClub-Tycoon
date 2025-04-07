@@ -2,8 +2,8 @@ Shader "Custom/TransparentShader"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {} // Текстура
-        _Color ("Color Tint", Color) = (1,1,1,1) // Колір з альфою
+        _MainTex ("Texture", 2D) = "white" {}
+        _Color ("Color Tint", Color) = (1,1,1,1)
     }
     SubShader
     {

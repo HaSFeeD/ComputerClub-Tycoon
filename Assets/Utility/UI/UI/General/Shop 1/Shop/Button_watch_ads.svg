@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 143.92 63.87">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #98570d;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        fill: #f4a508;
+      }
+
+      .cls-4 {
+        fill: #d5860b;
+      }
+    </style>
+  </defs>
+  <g id="_Слой_1-2" data-name="Слой 1">
+    <g>
+      <g>
+        <rect class="cls-4" x="0" y="4.44" width="143.92" height="59.42" rx="21.34" ry="21.34"/>
+        <rect class="cls-3" width="143.92" height="58.49" rx="21.17" ry="21.17"/>
+      </g>
+      <g>
+        <rect class="cls-1" x="39.92" y="7.49" width="54.57" height="40.89" rx="2.59" ry="2.59"/>
+        <ellipse class="cls-3" cx="67.2" cy="27.93" rx="13.69" ry="13.1"/>
+        <path class="cls-2" d="M75.97,27.47l-13.4-7.4c-.36-.2-.79.06-.79.47v14.81c0,.41.44.66.79.47l13.4-7.4c.37-.2.37-.73,0-.94Z"/>
+        <path class="cls-1" d="M108.01,11.82v16.12h-17.55v-9.75l15.82-7.4c.8-.37,1.73.18,1.73,1.03Z"/>
+        <path class="cls-1" d="M108.01,44.05v-16.12h-17.55v9.75l15.82,7.4c.8.37,1.73-.18,1.73-1.03Z"/>
+      </g>
+      <rect class="cls-1" x="90.46" y="26.04" width="17.55" height="5.33"/>
+    </g>
+  </g>
+</svg>

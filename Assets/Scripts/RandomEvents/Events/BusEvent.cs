@@ -17,7 +17,7 @@ public class BusEvent : MonoBehaviour
     }
     private void OnClickRewardAd()
     {
-        RewardedAdManager manager = FindObjectOfType<RewardedAdManager>();
+        RewardAdManager manager = FindObjectOfType<RewardAdManager>();
         manager.ShowRewardedAd(() =>
         {
             Instantiate(_bus, PointManager.instance.busSpawnPoint.transform.position, PointManager.instance.busSpawnPoint.transform.rotation);

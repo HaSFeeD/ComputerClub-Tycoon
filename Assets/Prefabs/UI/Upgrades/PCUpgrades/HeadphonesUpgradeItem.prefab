@@ -135,15 +135,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeName: HeadphonesUpgrade
+  UpgradeLinkID: quest7
   _upgradeLevel: 1
   _initialCost: 50
   _costMultiplier: 1.9
   _upgradeIncome: 1
   _incomeMultiplier: 1.5
-  _maxUpgradeLevel: 5
-  upgradeType: 0
   UpgradeIcon: {fileID: 21300000, guid: 60977d0faf653db45aadba9b2801f13d, type: 3}
-  _upgradeLevelPrefab: []
 --- !u!1 &5937583659532725691
 GameObject:
   m_ObjectHideFlags: 0

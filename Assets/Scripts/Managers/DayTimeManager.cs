@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Localization.Plugins.XLIFF.V20;
 using UnityEngine;
 
 public class DayTimeManager : MonoBehaviour
@@ -39,16 +38,15 @@ public class DayTimeManager : MonoBehaviour
         if(_hours >= 24){
             TimeReset();
         }
-        HUD.Instance._hoursTextMesh.text = _hours.ToString();
-        HUD.Instance._minutesTextMesh.text = _minutes.ToString();
+        HUD.Instance._hoursTextMesh.text = string.Format("{0:D2}:{1:D2}", _hours, _minutes);
         switch(_hours){
-            case 6: _light.color = new Color32(142,134,114,255);
+            case 6: _light.color = new Color32(135,95,74,255);
             break;
-            case 10: _light.color = new Color32(255,240,196,255); 
+            case 10: _light.color = new Color32(106,100,82,255); 
             break;
-            case 18: _light.color = new Color32(250,184,18,255); 
+            case 18: _light.color = new Color32(114,63,20,255); 
             break;
-            case 21: _light.color = new Color32(22,21,18,255); 
+            case 21: _light.color = new Color32(0,0,0,255); 
             break;
         }
     }

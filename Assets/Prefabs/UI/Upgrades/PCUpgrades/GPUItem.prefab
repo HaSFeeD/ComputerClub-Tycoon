@@ -135,15 +135,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _upgradeName: GPUUpgrade
+  UpgradeLinkID: quest6
   _upgradeLevel: 1
   _initialCost: 50
   _costMultiplier: 1.9
   _upgradeIncome: 1
   _incomeMultiplier: 1.5
-  _maxUpgradeLevel: 5
-  upgradeType: 0
   UpgradeIcon: {fileID: 21300000, guid: 55f193e9afc557f4788dd1a6a4f8f2da, type: 3}
-  _upgradeLevelPrefab: []
 --- !u!1 &6757831930980508299
 GameObject:
   m_ObjectHideFlags: 0

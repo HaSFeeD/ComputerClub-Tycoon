@@ -10,5 +10,7 @@ public class LevelData
     public float Cash;
     public float Rating;
     public float Income;
+    public float Energy;
     public List<RoomData> rooms;
+    public List<QuestSaveData> questSaveDatas;
 }

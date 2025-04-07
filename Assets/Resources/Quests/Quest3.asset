@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e26f771ced66040b6725101da2f9a6, type: 3}
+  m_Name: Quest3
+  m_EditorClassIdentifier: 
+  QuestIndex: 33
+  QuestLinkID: quest3
+  QuestName: Chair Upgrade
+  QuestDescription: Upgrade Chair on any PC!
+  questType: 1
+  GameLevel: 1
+  Reward: 3
+  LevelOfObject: 0
+  CountOfObjects: 0
+  CurrentAmount: 2
+  TargetAmount: 2
+  MaxAmount: 10
+  IsCompleted: 1
+  IsRewardTaken: 1

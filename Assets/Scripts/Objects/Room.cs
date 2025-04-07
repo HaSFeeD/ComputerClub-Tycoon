@@ -1,32 +1,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEditor.Localization;
 
+public enum RoomType{
+    Computer,
+    Toilet,
+    VendingMachine,
+    Generator
+}
 
 public class Room : MonoBehaviour
 {
-    [SerializeField]
     public int id;
+    public string RoomLinkID;
     public float _roomIncome;
-    [SerializeField]
+    public RoomType roomType;
     public GameObject BlockRoomGameobject;
-    [SerializeField]
     public bool _roomAvailable = false;
-    [SerializeField]
-    private bool _hasUpgrades = false;
+    [SerializeField] private bool _hasUpgrades = false;
     public List<Computer> Computers = new List<Computer>();
     public List<Toilet> Toilets = new List<Toilet>();
     public List<VendingMachine> VendingMachines = new List<VendingMachine>();
+    public List<Generator> Generators = new List<Generator>();
     public int ObjectsCount;
-    public GamingRoomUpgradesManager roomUpgradesManager;
+    public RoomUpgradesManager roomUpgradesManager;
 
     private void Awake()
     {
-        roomUpgradesManager = GetComponentInChildren<GamingRoomUpgradesManager>();
+        roomUpgradesManager = GetComponentInChildren<RoomUpgradesManager>();
         Computers = GetComponentsInChildren<Computer>().ToList();
         Toilets = GetComponentsInChildren<Toilet>(true).ToList();
         VendingMachines = GetComponentsInChildren<VendingMachine>(true).ToList();
+        Generators = GetComponentsInChildren<Generator>(true).ToList();
         if(_roomIncome == 0){
             _roomIncome = 1;
         }
@@ -43,6 +48,8 @@ public class Room : MonoBehaviour
             return Toilets as List<T>;
         if (typeof(T) == typeof(VendingMachine))
             return VendingMachines as List<T>;
+        if (typeof(T) == typeof(Generator))
+            return Generators as List<T>;
         return new List<T>();
     }
     public void AddRoomIncome(float amount){

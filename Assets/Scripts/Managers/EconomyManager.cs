@@ -8,8 +8,10 @@ public class EconomyManager : MonoBehaviour
     public static EconomyManager Instance { get; private set; }
     public event Action<float> OnCashChanged;
     public event Action<float> OnDiamondChanged;
+    public event Action<float> OnEnergyChanged;
     public float Cash {get; private set;}
     public int Diamonds {get; private set;}
+    public float Energy {get; private set;}
     public float DailyExpenses;
     private void Awake()
     {
@@ -43,6 +45,21 @@ public class EconomyManager : MonoBehaviour
     public void SetDiamonds (int amount){
         Diamonds = amount;
         OnDiamondChanged?.Invoke(Diamonds);
+    }
+    public void SetEnergy(float amount){
+        Energy = amount;
+        OnEnergyChanged?.Invoke(Energy);
+    }
+    public void AddEnergy(float amount){
+        Energy += amount;
+        OnEnergyChanged?.Invoke(Energy);
+    }
+    public void SubtractEnergy(float amount){
+        Energy -= amount;
+        OnEnergyChanged?.Invoke(Energy);
+    }
+    public float GetEnergy(){
+        return Energy;
     }
     
 }

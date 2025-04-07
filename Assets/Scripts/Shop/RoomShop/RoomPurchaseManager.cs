@@ -34,6 +34,7 @@ public class RoomPurchaseManager : MonoBehaviour
                     roomItemData.isRoomPurchased = true;
                     button.SetActive(false);
                     roomItemData.UpdateRoomItemUI();
+                    QuestManager.Instance.UpdateQuestProgress(QuestType.BuyRoom, room.RoomLinkID, 1);
                 }
                 else 
                 {

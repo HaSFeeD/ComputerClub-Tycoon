@@ -10,89 +10,126 @@ public class UpdateShopDataUI : MonoBehaviour
     public GameObject UpgradeItemsContainer;
     public GameObject ShopUpgradeElement;
 
+    public GameObject NextPageButton;
+    public GameObject PreviousPage;
     [SerializeField] private Image _upgradeIcon;
     [SerializeField] private Image _upgradeLevelImage;
     [SerializeField] private TextMeshProUGUI _currentIncome;
     [SerializeField] private TextMeshProUGUI _additionalIncome;
     [SerializeField] private Button _upgradeButton;
+    
 
     private void Awake()
     {
         Instance = this;
     }
     
-        public void UpdateUpgradePanelUI(UpgradeData upgradeData)
+    public void UpdateUpgradePanelUI(UpgradeData upgradeData)
     {
-        var room = RoomManager.Instance.FindRoomByID(upgradeData.GetRoomUpgradeManager().GetRoomID());
-        _upgradeIcon.sprite = upgradeData.UpgradeIcon;
-        _upgradeLevelImage.GetComponentInChildren<TextMeshProUGUI>().text = upgradeData.UpgradeLevel.ToString();
+        if (upgradeData == null)
+        {
+            Debug.LogError("UpgradeData is null.");
+            return;
+        }
 
+        if (RoomManager.Instance == null)
+        {
+            Debug.LogError("RoomManager.Instance is null.");
+            return;
+        }
+        
+        var roomUpgradeManager = upgradeData.GetRoomUpgradeManager();
+        if (roomUpgradeManager == null)
+        {
+            Debug.LogError("upgradeData.GetRoomUpgradeManager() returned null.");
+            return;
+        }
+        
+        int roomID = roomUpgradeManager.GetRoomID();
+        var room = RoomManager.Instance.FindRoomByID(roomID);
+        if (room == null)
+        {
+            Debug.LogError("Room with ID " + roomID + " not found.");
+            return;
+        }
+        
+        if (_upgradeIcon != null)
+        {
+            _upgradeIcon.sprite = upgradeData.UpgradeIcon;
+        }
+        
+        if (_upgradeLevelImage != null)
+        {
+            TextMeshProUGUI levelText = _upgradeLevelImage.GetComponentInChildren<TextMeshProUGUI>();
+            if (levelText != null)
+                levelText.text = upgradeData.UpgradeLevel.ToString();
+            else
+                Debug.LogError("No TextMeshProUGUI component found in _upgradeLevelImage.");
+        }
+        
         if (upgradeData is UtilityUpgradeData utilityUpgrade)
         {
             if (utilityUpgrade.upgradeType == UtilityUpgradeType.VendingMachine)
             {
                 VendingMachine vm = utilityUpgrade.ReturnObject<VendingMachine>();
-                if(vm != null)
-                {
-                    _currentIncome.text = vm.Income.ToString();
-                }
-                else
-                {
-                    _currentIncome.text = room._roomIncome.ToString();
-                }
+                _currentIncome.text = (vm != null ? vm.Income.ToString() : room._roomIncome.ToString());
             }
             else if (utilityUpgrade.upgradeType == UtilityUpgradeType.Toilet)
             {
                 Toilet t = utilityUpgrade.ReturnObject<Toilet>();
-                if(t != null)
-                {
-                    _currentIncome.text = t.Income.ToString();
-                }
-                else
-                {
-                    _currentIncome.text = room._roomIncome.ToString();
-                }
+                _currentIncome.text = (t != null ? t.Income.ToString() : room._roomIncome.ToString());
+            }
+            else
+            {
+                _currentIncome.text = room._roomIncome.ToString();
             }
         }
-        else 
+        else
         {
             _currentIncome.text = room._roomIncome.ToString();
         }
-
+        
         int costToDisplay = upgradeData.CurrentCost;
         if (upgradeData is UtilityUpgradeData utilityUpgrade2)
         {
             costToDisplay = (int)utilityUpgrade2.DisplayCost;
         }
-
-        if (!upgradeData.IsMaxUpgradeLevel())
+        
+        if (_upgradeButton != null)
         {
-            _upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = costToDisplay.ToString();
+            TextMeshProUGUI buttonText = _upgradeButton.GetComponentInChildren<TextMeshProUGUI>();
+            if (buttonText != null)
+            {
+                buttonText.text = !upgradeData.IsMaxUpgradeLevel() ? costToDisplay.ToString() : "MAX LEVEL";
+            }
         }
-        else 
-        {
-            _upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text = "MAX LEVEL";
-        }
-
-        float currentLevelIncome = upgradeData.UpgradeIncome 
-                                * Mathf.Pow(upgradeData.IncomeMultiplier, upgradeData.UpgradeLevel - 1);
-        float nextLevelIncome = upgradeData.UpgradeIncome 
-                            * Mathf.Pow(upgradeData.IncomeMultiplier, upgradeData.UpgradeLevel);
+        
+        float currentLevelIncome = upgradeData.UpgradeIncome * Mathf.Pow(upgradeData.IncomeMultiplier, upgradeData.UpgradeLevel - 1);
+        float nextLevelIncome = upgradeData.UpgradeIncome * Mathf.Pow(upgradeData.IncomeMultiplier, upgradeData.UpgradeLevel);
         float addedIncome = nextLevelIncome - currentLevelIncome;
-
-        if (!upgradeData.IsMaxUpgradeLevel())
+        
+        if (_additionalIncome != null)
         {
-            _additionalIncome.text = "+ " + addedIncome.ToString();
+            _additionalIncome.text = !upgradeData.IsMaxUpgradeLevel() ? "+ " + addedIncome.ToString() : "UPGRADE MAX LEVEL!";
         }
-        else
-        {
-            _additionalIncome.text = "UPGRADE MAX LEVEL!";
-        }
-
+        
         UpdateOnClickMethod(upgradeData);
     }
 
-    
+    public void UpdatePurchasePanelUI(UtilityUpgradeData purchaseData)
+    {
+        if (!UpgradePanel.activeSelf)
+            UpgradePanel.SetActive(true);
+
+        _upgradeIcon.sprite = purchaseData.UpgradeIcon;
+        _upgradeLevelImage.GetComponentInChildren<TextMeshProUGUI>().text = purchaseData.IsPurchased ? "1" : "0";
+        _currentIncome.text = purchaseData.CurrentIncome.ToString();
+        _upgradeButton.GetComponentInChildren<TextMeshProUGUI>().text =
+            purchaseData.IsPurchased ? "PURCHASED" : purchaseData.PurchaseCost.ToString();
+        _additionalIncome.text = "";
+        _upgradeButton.onClick.RemoveAllListeners();
+        _upgradeButton.onClick.AddListener(purchaseData.OnUpgradeClicked);
+    }
     private void UpdateOnClickMethod(UpgradeData upgradeData)
     {
         _upgradeButton.onClick.RemoveAllListeners();

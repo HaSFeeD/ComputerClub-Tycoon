@@ -5,15 +5,27 @@ using UnityEngine;
 public class BotSpawnTimeManager : MonoBehaviour
 {
     public static BotSpawnTimeManager Instance;
-    private float _baseSpawnTime = 40f;
+    private const float InitialSpawnTime = 40f;
+    private float _baseSpawnTime;
+    private float _spawnTimeWithoutTime;
     private const float MinSpawnTime = 7f;
+    
 
     private void Awake(){
         Instance = this;
+        _baseSpawnTime = InitialSpawnTime;
     }
+    
     public float GetSpawnTime(){
         return _baseSpawnTime;
     }
+    
+    public float GetAdditionalSpawnTime(){
+        float clubRating = RatingManager.Instance.GetCurrentRating();
+        float adjustedSpawnTime = InitialSpawnTime * 2f / (1f + clubRating);
+        return adjustedSpawnTime;
+    }
+    
     public void AdjustSpawnTime(float hour){
         float clubRating = RatingManager.Instance.GetCurrentRating();
         float timeFactor = 1f;
@@ -32,7 +44,8 @@ public class BotSpawnTimeManager : MonoBehaviour
         else{
             timeFactor = 1f;
         }
-        float adjustedSpawnTime = _baseSpawnTime * timeFactor / (1f + clubRating);
-        _baseSpawnTime = adjustedSpawnTime;
+        float adjustedSpawnTime = InitialSpawnTime * timeFactor / (1f + clubRating);
+        _baseSpawnTime = Mathf.Max(adjustedSpawnTime, MinSpawnTime);
+        Debug.Log(_baseSpawnTime);
     }
 }

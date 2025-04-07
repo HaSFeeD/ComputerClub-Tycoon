@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Scripts/Objects/Toilet/ToiletUpgradeData.cs.meta
 guid: 8c79b265e0370ed4c972832e3489a4d4
+========
+guid: 693b9f66714cec5488f4440551ee0f14
+>>>>>>>> Stashed changes:Assets/Scripts/BotBehaviour/Actions/QueueRegistrationAction.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

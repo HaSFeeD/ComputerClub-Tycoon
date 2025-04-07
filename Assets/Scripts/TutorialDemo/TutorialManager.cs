@@ -12,7 +12,7 @@ public class TutorialManager : MonoBehaviour
     private GameManager gameManager;
     private GameObject gameObject;
     private LocalizeStringEvent tutorialText;
-    private GameObject canvasTutorial;
+    private GameObject Tutorial;
     private TutorialSteps tutorialStepKeys = new TutorialSteps();
     
     void Start()
@@ -21,7 +21,7 @@ public class TutorialManager : MonoBehaviour
         gameManager = gameObject.GetComponent<GameManager>();
         tutorialText = GameObject.Find("Tutorial.Text").GetComponent<LocalizeStringEvent>();
         if(tutorialText == null){ Debug.Log("Tutorial.Text doesnt exist"); }
-        canvasTutorial = GameObject.Find("canvas.Tutorial");
+        Tutorial = GameObject.Find(".Tutorial");
     }
     void Update()
     {
@@ -40,7 +40,7 @@ public class TutorialManager : MonoBehaviour
         if(isTutorialCompleted){
             gameManager.GetComponent<BotSpawner>().enabled = true;
             Destroy(GetComponent<TutorialManager>());
-            Destroy(canvasTutorial);
+            Destroy(Tutorial);
         }
     }
     void NextStep()

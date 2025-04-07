@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3755408612335733620
+--- !u!1 &439972975638056260
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2986210426572924776}
-  - component: {fileID: 8004385131578708515}
-  - component: {fileID: 2148162423467652001}
-  - component: {fileID: 9205153758738065548}
-  - component: {fileID: 8588911087346940124}
+  - component: {fileID: 1724935832067252609}
+  - component: {fileID: 6069535499973505551}
+  - component: {fileID: 3840816535237875531}
+  - component: {fileID: 29876728713930225}
+  - component: {fileID: 2669411889042545309}
   m_Layer: 5
   m_Name: ToiletUpgrade1
   m_TagString: Untagged
@@ -20,41 +20,41 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &2986210426572924776
+--- !u!224 &1724935832067252609
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3755408612335733620}
+  m_GameObject: {fileID: 439972975638056260}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5814721213320000624}
+  - {fileID: 5026860276132120030}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -216, y: 617}
+  m_AnchoredPosition: {x: -2220, y: 617}
   m_SizeDelta: {x: 230, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8004385131578708515
+--- !u!222 &6069535499973505551
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3755408612335733620}
+  m_GameObject: {fileID: 439972975638056260}
   m_CullTransparentMesh: 1
---- !u!114 &2148162423467652001
+--- !u!114 &3840816535237875531
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3755408612335733620}
+  m_GameObject: {fileID: 439972975638056260}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -79,13 +79,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &9205153758738065548
+--- !u!114 &29876728713930225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3755408612335733620}
+  m_GameObject: {fileID: 439972975638056260}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -119,32 +119,36 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 2148162423467652001}
+  m_TargetGraphic: {fileID: 3840816535237875531}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8588911087346940124
+--- !u!114 &2669411889042545309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3755408612335733620}
+  m_GameObject: {fileID: 439972975638056260}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bf27a24db223ad4dae6edd882998472, type: 3}
+  m_Script: {fileID: 11500000, guid: ac310d4f59de592468cddd5d18e51f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _upgradeName: ToiletUpgrade1
-  CurrentUpgradeType: 1
+  _upgradeName: Toilet1
   _upgradeLevel: 1
   _initialCost: 50
   _costMultiplier: 1.9
-  _upgradeIncome: 0
+  _upgradeIncome: 1
   _incomeMultiplier: 1.5
   UpgradeIcon: {fileID: 3286163911610860551, guid: 7966e334cfb17fa46a8f8463eeecadb2,
     type: 3}
---- !u!1 &4986678372482565869
+  UtilityID: 1
+  upgradeType: 1
+  purchaseCost: 200
+  _energyConsumptionPerUpgrade: 5
+  isPurchased: 0
+--- !u!1 &2020832528126880487
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,9 +156,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5814721213320000624}
-  - component: {fileID: 2837674314451291886}
-  - component: {fileID: 6754683063897126342}
+  - component: {fileID: 5026860276132120030}
+  - component: {fileID: 7003020214929391256}
+  - component: {fileID: 8924016599538879744}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -162,40 +166,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &5814721213320000624
+--- !u!224 &5026860276132120030
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4986678372482565869}
+  m_GameObject: {fileID: 2020832528126880487}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2986210426572924776}
+  m_Father: {fileID: 1724935832067252609}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -114, y: -114.99994}
   m_SizeDelta: {x: 230, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2837674314451291886
+--- !u!222 &7003020214929391256
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4986678372482565869}
+  m_GameObject: {fileID: 2020832528126880487}
   m_CullTransparentMesh: 1
---- !u!114 &6754683063897126342
+--- !u!114 &8924016599538879744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4986678372482565869}
+  m_GameObject: {fileID: 2020832528126880487}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}

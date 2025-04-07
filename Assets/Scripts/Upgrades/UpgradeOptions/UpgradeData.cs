@@ -9,6 +9,7 @@ public class UpgradeData : MonoBehaviour
 {
     [SerializeField] private string _upgradeName = "Default Upgrade";
     public string UpgradeName => _upgradeName;
+    [SerializeField] protected string UpgradeLinkID;
 
     [SerializeField] private int _upgradeLevel = 1;
     public int UpgradeLevel => _upgradeLevel;
@@ -39,7 +40,7 @@ public class UpgradeData : MonoBehaviour
     protected Button _upgradeButton;
     protected TextMeshProUGUI _levelTextInShop;
 
-    private GamingRoomUpgradesManager _roomUpgradeManager;
+    private RoomUpgradesManager _roomUpgradeManager;
 
     protected virtual void Awake()
     {
@@ -63,18 +64,20 @@ public class UpgradeData : MonoBehaviour
             return;
         }
 
-        if (_roomUpgradeManager != null)
+        if (_roomUpgradeManager != null){
             _roomUpgradeManager.UpgradeLevelUp(this);
+            QuestManager.Instance.UpdateQuestProgress(QuestType.BuyUpgrade, UpgradeLinkID, 1);
+        }
         else
             Debug.LogWarning("RoomUpgradeManager is null. Check if you called SetRoomUpgradeManager().");
     }
 
-    public void SetRoomUpgradeManager(GamingRoomUpgradesManager manager)
+    public void SetRoomUpgradeManager(RoomUpgradesManager manager)
     {
         _roomUpgradeManager = manager;
     }
 
-    public GamingRoomUpgradesManager GetRoomUpgradeManager(){
+    public RoomUpgradesManager GetRoomUpgradeManager(){
         return _roomUpgradeManager;
     }
 
@@ -105,7 +108,7 @@ public class UpgradeData : MonoBehaviour
 
         _upgradeButton.onClick.RemoveAllListeners();
         _upgradeButton.onClick.AddListener(() => {
-            UpdateShopDataUI.Instance.UpdateUpgradePanelUI(this);
+        UpdateShopDataUI.Instance.UpdateUpgradePanelUI(this);
             if (_upgradePanel != null) 
                 _upgradePanel.SetActive(true);
         });

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 136.7 145.44">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke: #35a2ff;
+        stroke-miterlimit: 10;
+      }
+
+      .cls-1, .cls-5 {
+        fill: #fff;
+      }
+
+      .cls-6 {
+        fill: #364044;
+      }
+
+      .cls-2 {
+        stroke-width: 2.02px;
+      }
+
+      .cls-2, .cls-3, .cls-4 {
+        fill: none;
+      }
+
+      .cls-3 {
+        stroke-width: 1.85px;
+      }
+
+      .cls-4 {
+        stroke-width: 1.12px;
+      }
+    </style>
+  </defs>
+  <g id="_Слой_1-2" data-name="Слой 1">
+    <g>
+      <g>
+        <rect class="cls-6" width="136.7" height="145.44" rx="12.61" ry="12.61"/>
+        <rect class="cls-5" width="136.7" height="136.7" rx="12.23" ry="12.23"/>
+      </g>
+      <g>
+        <g>
+          <rect class="cls-2" x="10.83" y="61.12" width="115.03" height="10.86"/>
+          <rect class="cls-4" x="27.19" y="71.98" width="82.33" height="9.95"/>
+          <rect class="cls-3" x="-6.17" y="97.32" width="58.7" height="8.02" transform="translate(-78.15 124.5) rotate(-90)"/>
+          <rect class="cls-3" x="84.18" y="97.32" width="58.7" height="8.02" transform="translate(12.2 214.85) rotate(-90)"/>
+        </g>
+        <g>
+          <rect class="cls-4" x="20.48" y="8.17" width="56.79" height="40.39" rx="3.03" ry="3.03"/>
+          <rect class="cls-4" x="25.31" y="12.15" width="47.12" height="32.44" rx="2.47" ry="2.47"/>
+          <rect class="cls-4" x="43.26" y="48.57" width="11.22" height="6.09"/>
+          <path class="cls-4" d="M54.48,54.66h13c.92,0,1.67.75,1.67,1.67v2.29c0,.92-.75,1.67-1.67,1.67H30.26c-.92,0-1.67-.75-1.67-1.67v-2.29c0-.92.75-1.67,1.67-1.67h13"/>
+        </g>
+        <g>
+          <rect class="cls-4" x="94.7" y="18.1" width="23.18" height="42.18"/>
+          <rect class="cls-1" x="98.09" y="21.77" width="16.39" height="2.77"/>
+          <rect class="cls-1" x="98.09" y="26.47" width="16.39" height="2.77"/>
+          <circle class="cls-4" cx="106.29" cy="55.19" r="1.42"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

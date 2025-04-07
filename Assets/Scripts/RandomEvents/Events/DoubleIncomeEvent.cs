@@ -18,7 +18,7 @@ public class MultiplyIncomeEvent : MonoBehaviour
     }
     private void OnClickRewardAd()
     {
-        RewardedAdManager manager = FindObjectOfType<RewardedAdManager>();
+        RewardAdManager manager = FindObjectOfType<RewardAdManager>();
         manager.ShowRewardedAd(() =>
         {
             DoubleIncome();

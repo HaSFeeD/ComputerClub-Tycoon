@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.Localization.SmartFormat.GlobalVariables;
 
 public class VendingMachine : MonoBehaviour, IUsableObject
 {
     [SerializeField] public int ID;
-    
+    [SerializeField] public string QuestLink;
     [SerializeField] private int upgradeLevel = 1;
     public int UpgradeLevel { get => upgradeLevel; set => upgradeLevel = value; }
     

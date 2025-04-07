@@ -3,6 +3,7 @@ using UnityEngine;
 public class Toilet : MonoBehaviour, IUsableObject
 {
     [SerializeField] public int ID;
+    [SerializeField] public string QuestLink;
     [SerializeField] public float Income;
     [SerializeField] public float UsageTime;
     

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/ExternalDependencyManager/Editor/1.2.183.meta
 guid: 68ef6435cbf03c34abe5d2e18ac9029a
+========
+guid: 29161fea5e979a842af97014fc05bdbb
+>>>>>>>> Stashed changes:Assets/ExternalDependencyManager/Editor/1.2.185.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

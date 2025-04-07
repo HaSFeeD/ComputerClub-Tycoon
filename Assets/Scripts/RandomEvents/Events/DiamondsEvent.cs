@@ -15,7 +15,7 @@ public class DiamondsEvent : MonoBehaviour
     }
     private void OnClickRewardAd()
     {
-        RewardedAdManager manager = FindObjectOfType<RewardedAdManager>();
+        RewardAdManager manager = FindObjectOfType<RewardAdManager>();
         manager.ShowRewardedAd(() =>
         {
             EconomyManager.Instance.AddDiamonds(GetRandomDiamondsReward());

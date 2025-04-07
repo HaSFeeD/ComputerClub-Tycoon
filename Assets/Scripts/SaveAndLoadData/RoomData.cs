@@ -11,4 +11,6 @@ public class RoomData
     public List<UpgradeSaveData> upgrades;
     public List<VendingMachineSaveData> vendingMachines;
     public List<ToiletSaveData> toilets;
+    public List<GeneratorSaveData> generators;
+    public List<ComputerData> computers;
 }

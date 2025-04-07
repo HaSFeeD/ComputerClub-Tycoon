@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
-using UnityEngine.Localization.SmartFormat.PersistentVariables;
 
 public class BotController : MonoBehaviour
 {
@@ -85,7 +84,7 @@ public class BotController : MonoBehaviour
             {
                 var room = RoomManager.Instance.FindRoomByID(ReservedComputer.RoomID);
                 Debug.Log($"Adding cash: income = {room._roomIncome}, PlaytimeDuration = {PlaytimeDuration}, Multiplier = {BotIncomeMultiplier}");
-                EconomyManager.Instance.AddCash((room._roomIncome * PlaytimeDuration) * BotIncomeMultiplier);
+                EconomyManager.Instance.AddCash(((room._roomIncome * PlaytimeDuration) * BotIncomeMultiplier) + IncomeManager.Instance.GetBonusIncome());
             }
             ReservedComputer.Reserve(this);
             actionQueue.Enqueue(new UseComputerAction(PlaytimeDuration, ReservedComputer));
@@ -94,7 +93,7 @@ public class BotController : MonoBehaviour
             if (willTakeBreak)
             {
                 actionQueue.Enqueue(new VacateComputerAction(ReservedComputer));
-                if (Random.value < 0.5f)
+                if (Random.value < 0.9f)
                 {
                     actionQueue.Enqueue(new UseToiletAction(Random.Range(2f, 5f)));
                 }

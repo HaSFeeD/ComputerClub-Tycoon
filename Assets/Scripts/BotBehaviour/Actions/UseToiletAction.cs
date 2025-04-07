@@ -1,4 +1,3 @@
-using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class UseToiletAction : IBotAction
@@ -38,45 +37,43 @@ public class UseToiletAction : IBotAction
         bot.Agent.isStopped = false;
         bot.CurrentActivity = BotActivity.Walking;
     }
-
     public void Execute()
+{
+    if (IsCompleted) return;
+
+    float stopDist = bot.Agent.stoppingDistance;
+
+    if (!bot.Agent.pathPending && bot.Agent.remainingDistance <= Mathf.Max(stopDist, bot.ReachedThreshold))
     {
-        if (IsCompleted) return;
-
-        if (!bot.Agent.pathPending && bot.Agent.remainingDistance <= bot.ReachedThreshold)
+        if (bot.CurrentActivity != BotActivity.UsingToilet)
         {
-            if (bot.CurrentActivity != BotActivity.UsingToilet)
-            {
-                bot.Agent.isStopped = true;
-                bot.Agent.updatePosition = false;
-                bot.Agent.updateRotation = false;
+            bot.Agent.isStopped = true;
+            bot.Agent.updatePosition = false;
+            bot.Agent.updateRotation = false;
 
-                previousPosition = bot.transform.position;
-                previousRotation = bot.transform.rotation;
+            previousPosition = bot.transform.position;
+            previousRotation = bot.transform.rotation;
 
-                bot.transform.position = targetToilet.Position + bot.SeatOffset;
-                bot.transform.rotation = targetToilet.transform.rotation;
+            bot.transform.position = targetToilet.Position;
+            bot.transform.rotation = targetToilet.transform.rotation;
 
-                timer = 0f;
-                bot.CurrentActivity = BotActivity.UsingToilet;
-
-                // timerUI = GameObject.Instantiate(bot.TimerUIPrefab, bot.transform).GetComponent<TimerUI>();
-                // timerUI.SetDuration(usageDuration);
-                // timerUI.Begin();
-            }
-        }
-
-        if (bot.CurrentActivity == BotActivity.UsingToilet)
-        {
-            timer += Time.deltaTime;
-            if (timer >= usageDuration)
-            {
-                FinishUsage();
-                IsCompleted = true;
-                bot.CurrentActivity = BotActivity.Idle;
-            }
+            timer = 0f;
+            bot.CurrentActivity = BotActivity.UsingToilet;
         }
     }
+
+    if (bot.CurrentActivity == BotActivity.UsingToilet)
+    {
+        timer += Time.deltaTime;
+        if (timer >= usageDuration)
+        {
+            FinishUsage();
+            IsCompleted = true;
+            bot.CurrentActivity = BotActivity.Idle;
+        }
+    }
+}
+
 
     private void FinishUsage()
     {

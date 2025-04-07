@@ -1,10 +1,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+<<<<<<< Updated upstream
 using UnityEngine.UI;
 
 
 public class GamingRoomUpgradesManager : MonoBehaviour
+=======
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+
+public class GamingRoomUpgradesManager : MonoBehaviour, IRoomClickHandler
+>>>>>>> Stashed changes
 {
     private int _roomId;
     private List<UpgradeData> _roomUpgrades = new List<UpgradeData>();
@@ -17,8 +26,14 @@ public class GamingRoomUpgradesManager : MonoBehaviour
     private Button _purchaseRoomObjectButton;
 
     private Vector3 _mouseDownPos;
+<<<<<<< Updated upstream
     private float _clickThreshold = 10f;
     private Room room;
+=======
+    private float _clickThreshold = 100f;
+    private Room room;
+    
+>>>>>>> Stashed changes
     private void Awake()
     {
         _upgradePanel = UpdateShopDataUI.Instance.UpgradePanel;
@@ -44,6 +59,7 @@ public class GamingRoomUpgradesManager : MonoBehaviour
         return _roomUpgrades;
     }
 
+<<<<<<< Updated upstream
     private void OnMouseDown()
     {
         _mouseDownPos = Input.mousePosition;
@@ -58,6 +74,29 @@ public class GamingRoomUpgradesManager : MonoBehaviour
             }
         }
     }
+=======
+public void HandleRoomClick(Vector2 clickPosition)
+{
+
+    if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+    {
+        return;
+    }
+
+    Vector2 currentMousePos = Pointer.current != null
+        ? Pointer.current.position.ReadValue()
+        : Vector2.zero;
+
+
+    if (room != null && room._roomAvailable)
+    {
+        OpenShop();
+    }
+    else
+    {
+    }
+}
+>>>>>>> Stashed changes
 
     private void OpenShop()
     {

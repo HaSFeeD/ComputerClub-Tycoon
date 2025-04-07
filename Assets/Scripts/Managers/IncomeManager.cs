@@ -7,6 +7,7 @@ public class IncomeManager : MonoBehaviour
     private float _basicIncome = 1;
     private float _offlineIncome = 0;
     private float _upgradeIncome = 0;
+    private float _bonusIncome = 0;
 
     private void OnEnable(){
         
@@ -17,9 +18,10 @@ public class IncomeManager : MonoBehaviour
     void Start()
     {
         RecalculateUpgradeIncome();
+        OfflineEarning.Instance.CheckBonuses();
         _offlineIncome = OfflineEarning.Instance.CalculateOfflineIncome();
-        OfflineIncome.Instance.SetIncomeUIText(Convert.ToString(_offlineIncome));
-        OfflineIncome.Instance.SetIncomePercentOfMaxIncome(Convert.ToString(GlobalTimeManager.Instance.GetOfflineTime()), Convert.ToString(OfflineEarning.Instance.maxOfflineIncomeTimeInSeconds));
+        OfflineIncomeUI.Instance.SetIncomeUIText(_offlineIncome.ToString("F2"), OfflineEarning.Instance.OfflineTime.ToString());
+        OfflineIncomeUI.Instance.SetIncomePercentOfMaxIncome(Convert.ToString(GlobalTimeManager.Instance.GetOfflineTime()), Convert.ToString(OfflineEarning.Instance.initialOfflineIncomeTimeInSeconds));
         Debug.Log(_offlineIncome);
     }
     public float GetIncome(){
@@ -31,6 +33,15 @@ public class IncomeManager : MonoBehaviour
     public void AddIncome(float amount){
         _basicIncome += amount;
     }
+    public float GetBonusIncome(){
+        return _bonusIncome;
+    }
+    public void SetBonusIncome(float amount){
+        _bonusIncome = amount;
+    }
+    public void AddBonusIncome(float amount){
+        _bonusIncome += amount;
+    }
     public void AddOfflineIncome(){
         EconomyManager.Instance.AddCash(_offlineIncome);
     }
@@ -39,6 +50,7 @@ public class IncomeManager : MonoBehaviour
     }
     public void AddX3OfflineIncome(){
         EconomyManager.Instance.AddCash(_offlineIncome * 3);
+        EconomyManager.Instance.SubtractDiamonds(50);
     }
     public void RecalculateUpgradeIncome()
     {

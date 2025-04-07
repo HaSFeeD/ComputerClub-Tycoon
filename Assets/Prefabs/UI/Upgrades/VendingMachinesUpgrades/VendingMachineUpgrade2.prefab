@@ -141,10 +141,12 @@ MonoBehaviour:
   _costMultiplier: 1.9
   _upgradeIncome: 1
   _incomeMultiplier: 1.5
-  UpgradeIcon: {fileID: 0}
+  UpgradeIcon: {fileID: 3286163911610860551, guid: a34ee40f81b0e944c8b1b1ef601211c0,
+    type: 3}
   UtilityID: 2
   upgradeType: 0
   purchaseCost: 200
+  _energyConsumptionPerUpgrade: 5
   isPurchased: 0
 --- !u!1 &8028536384439862668
 GameObject:
